@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block title %} AstrumInbox - Send Message {% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-8 px-4">
+    <h1 class="text-3xl font-bold mb-4">Send Message</h1>
+    <form class="bg-white rounded-lg shadow-md p-6">
+        <div class="mb-4">
+            <label for="recipient" class="block text-gray-700 font-bold mb-2">Recipient:</label>
+            <input type="email" id="recipient" name="recipient"
+                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                   required>
+        </div>
+        <div class="mb-4">
+            <label for="subject" class="block text-gray-700 font-bold mb-2">Subject:</label>
+            <input type="text" id="subject" name="subject"
+                   class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                   required>
+        </div>
+        <div class="mb-4">
+            <label for="message" class="block text-gray-700 font-bold mb-2">Message:</label>
+            <textarea id="message" name="message" rows="6"
+                      class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required></textarea>
+        </div>
+        <button type="submit"
+                class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Send Message
+        </button>
+    </form>
+</div>
+{% endblock %}
+

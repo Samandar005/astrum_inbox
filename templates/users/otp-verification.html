@@ -1,0 +1,49 @@
+{% extends 'users/base.html' %}
+
+
+{% block title %}  AstrumInbox - OTP Verification {% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">OTP Verification</h1>
+    <p class="text-center mb-6">We've sent a verification code to your email. Please enter it below.</p>
+    <form action="index.html" method="GET">
+        <div class="mb-6">
+            <label for="otp" class="block text-gray-700 font-bold mb-2">Enter OTP:</label>
+            <div class="flex justify-between">
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+                <input type="text" maxlength="1"
+                       class="w-12 h-12 text-center text-2xl border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       required>
+            </div>
+        </div>
+        <button type="submit"
+                class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Verify
+        </button>
+    </form>
+    <p class="mt-4 text-center">
+        Didn't receive the code? <a href="#" class="text-blue-600 hover:underline">Resend</a>
+    </p>
+</div>
+<script src="{% static 'js/scripts.js' %}"> </script>
+{% endblock %}
+
+
+
+

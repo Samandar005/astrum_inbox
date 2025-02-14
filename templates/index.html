@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %} AstrumInbox - Messages {% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-8 px-4">
+    <h1 class="text-3xl font-bold mb-4">Messages</h1>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="divide-y divide-gray-200">
+            <div class="p-4 hover:bg-gray-50 cursor-pointer">
+                <a href="message-detail.html" class="block">
+                    <div class="flex justify-between items-center">
+                        <span class="font-semibold">John Doe</span>
+                        <span class="text-sm text-gray-500">2023-05-20 10:30</span>
+                    </div>
+                    <p class="text-gray-600 truncate">Hello, how are you doing?</p>
+                </a>
+            </div>
+            <div class="p-4 hover:bg-gray-50 cursor-pointer">
+                <a href="message-detail.html" class="block">
+                    <div class="flex justify-between items-center">
+                        <span class="font-semibold">Jane Smith</span>
+                        <span class="text-sm text-gray-500">2023-05-19 15:45</span>
+                    </div>
+                    <p class="text-gray-600 truncate">Meeting rescheduled to next week</p>
+                </a>
+            </div>
+            <!-- Add more message items here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
