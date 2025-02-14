@@ -8,24 +8,19 @@
     <h1 class="text-3xl font-bold mb-4">Messages</h1>
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="divide-y divide-gray-200">
-            <div class="p-4 hover:bg-gray-50 cursor-pointer">
-                <a href="message-detail.html" class="block">
-                    <div class="flex justify-between items-center">
-                        <span class="font-semibold">John Doe</span>
-                        <span class="text-sm text-gray-500">2023-05-20 10:30</span>
-                    </div>
-                    <p class="text-gray-600 truncate">Hello, how are you doing?</p>
-                </a>
-            </div>
-            <div class="p-4 hover:bg-gray-50 cursor-pointer">
-                <a href="message-detail.html" class="block">
-                    <div class="flex justify-between items-center">
-                        <span class="font-semibold">Jane Smith</span>
-                        <span class="text-sm text-gray-500">2023-05-19 15:45</span>
-                    </div>
-                    <p class="text-gray-600 truncate">Meeting rescheduled to next week</p>
-                </a>
-            </div>
+            {% for message in messages %}
+                <div class="p-4 hover:bg-gray-50 cursor-pointer">
+                    <a href="{{ message.get_detail_url }}" class="block">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">{{ request.user.get_full_name }}</span>
+                            <span class="text-sm text-gray-500">{{ message.created_at|date:"Y-m-d H:i" }}</span>
+                        </div>
+                        <p class="text-gray-600 truncate">{{ message.subject }}</p>
+                    </a>
+                </div>
+            {% empty %}
+                <h3>No Messages</h3>
+            {% endfor %}
             <!-- Add more message items here -->
         </div>
     </div>
