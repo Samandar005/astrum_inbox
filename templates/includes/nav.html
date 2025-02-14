@@ -1,9 +1,17 @@
 <nav class="bg-blue-600 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="/" class="text-white text-2xl font-bold">AstrumInbox</a>
+        <a href="{% url 'home' %}" class="text-white text-2xl font-bold">AstrumInbox</a>
         <div>
-            <a href="send-message.html" class="text-white mr-4">Send Message</a>
-            <a href="login.html" class="text-white">Logout</a>
+            {% if user.is_authenticated %}
+                <a href="send-message.html" class="text-white mr-4">Send Message</a>
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="text-white mr-4" type="submit">Logout</button>
+            </form>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="text-white">Login</a>
+                <a href="{% url 'users:signup' %}" class="text-white">Signup</a>
+            {% endif %}
         </div>
     </div>
 </nav>
