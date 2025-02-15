@@ -3,17 +3,19 @@ from django.views.generic import View, FormView, DetailView
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from .forms import MessageForm
 from .models import Message
 
-class HomePageView( LoginRequiredMixin, View):
+class HomePageView(LoginRequiredMixin, View):
+    login_url = '/users/login/'
+
     def get(self, request):
         messages = Message.objects.filter(to_email=request.user.email) if request.user.is_authenticated else []
         return render(request, 'index.html', {'messages': messages})
 
-class MessageSendView(FormView):
+class MessageSendView(LoginRequiredMixin, FormView):
     template_name = 'messages/send-message.html'
     form_class = MessageForm
     success_url = reverse_lazy('home')
@@ -43,8 +45,10 @@ class MessageSendView(FormView):
 
         return HttpResponseRedirect(self.success_url)
 
-class MessageDetailView(DetailView):
+class MessageDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Message
     template_name = 'messages/message-detail.html'
     context_object_name = 'message'
 
+    def test_func(self):
+        return self.request.user == self.get_object().user
