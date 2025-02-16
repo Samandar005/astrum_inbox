@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, FormView, DetailView
 from django.core.mail import EmailMessage
 from django.conf import settings
@@ -52,3 +52,6 @@ class MessageDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Message, slug=self.kwargs.get('slug'))
